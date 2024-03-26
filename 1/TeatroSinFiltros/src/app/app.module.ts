@@ -59,7 +59,6 @@ import { ContactoComponent } from './contacto/contacto.component';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    GoogleMapsModule,
   ],
   providers: [AuthenticationService, 
     { provide: LocationStrategy, useClass: HashLocationStrategy }],
