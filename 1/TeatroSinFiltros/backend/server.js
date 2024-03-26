@@ -4,28 +4,34 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const verificarToken = require('../middlewares/authMiddleware');
+const verificarToken = require('./middlewares/authMiddleware'); // Asegúrate de ajustar la ruta según tu estructura
 
 const app = express();
 app.use(cors({
     origin: 'http://localhost:4200' 
-  }));
+}));
 app.use(express.json());
 
-
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'teatro_sin_filtros'
+// Creando un pool de conexiones
+const pool = mysql.createPool({
+  connectionLimit: 10, // La cantidad de conexiones máximas que puedes tener al mismo tiempo
+  host: process.env.MYSQL_ADDON_HOST,
+  user: process.env.MYSQL_ADDON_USER,
+  password: process.env.MYSQL_ADDON_PASSWORD,
+  database: process.env.MYSQL_ADDON_DB,
+  port: process.env.MYSQL_ADDON_PORT || 3306 // Asegurándose de que el puerto esté definido o usando el puerto por defecto de MySQL
 });
 
-db.connect(err => {
-  if (err) { console.error('Error al conectar: ' + err.stack); return; }
-  console.log('Conectado a la base de datos con ID ' + db.threadId);
+pool.on('connection', function (connection) {
+  console.log('DB Connection established');
+
+  connection.on('error', function (err) {
+    console.error(new Date(), 'MySQL error', err.code);
+  });
+  connection.on('close', function (err) {
+    console.error(new Date(), 'MySQL close', err);
+  });
 });
-
-
 
 app.post('/api/usuarios' ,verificarToken,async (req, res) => {
   const { nombreUsuario, email, contrasena } = req.body;
