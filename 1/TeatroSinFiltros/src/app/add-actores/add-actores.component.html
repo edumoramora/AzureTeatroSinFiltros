@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="row">
+    
+    
+  
+      <div class="col-md-6">
+        <form (ngSubmit)="onSubmit()" class="actor-form">
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" [(ngModel)]="actor.nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="imagen">Imagen URL:</label>
+            <input type="text" id="imagen" class="form-control" [(ngModel)]="actor.imagen_url" name="imagen" required>
+          </div>
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" class="form-control" [(ngModel)]="actor.descripcion" name="descripcion" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Agregar Actor</button>
+          <br><br>
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+        </form>
+      </div>
+      
+      <div class="col-md-6">
+        <div *ngIf="actor.imagen_url" class="image-preview">
+          <img [src]="actor.imagen_url" alt="Vista previa de la imagen del actor" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+  </div>

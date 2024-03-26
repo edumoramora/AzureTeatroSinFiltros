@@ -1,0 +1,61 @@
+.obra-detalle .obra-header {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+    margin-bottom: 20px;
+}
+
+.obra-imagen {
+    width: 300px; 
+    height: auto; 
+    border-radius: 10px; 
+    margin-top: 20px; 
+}
+
+.obra-info {
+    flex-grow: 1;
+    margin-left: 40px; 
+}
+
+
+.obra-meta {
+    width: 200px; 
+}
+
+.obra-meta p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.actor-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: start;
+  }
+  
+  .actor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .actor-image {
+    width: 100px; 
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%; 
+    cursor: pointer; 
+  }
+  
+  .actor-name {
+    margin-top: 10px;
+  }
+  
+  .zoom {
+    transition: transform .2s; 
+  }
+  
+  .zoom:hover {
+    transform: scale(1.1); 
+  }

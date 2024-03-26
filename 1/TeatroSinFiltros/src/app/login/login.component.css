@@ -1,0 +1,50 @@
+.login-container {
+    max-width: 400px; /* Ancho máximo para el formulario de login */
+    margin: 50px auto; /* Centra el formulario en la página */
+    padding: 20px;
+    background-color: #2C2A33; /* Color de fondo similar al de tus tarjetas */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    color: #DDD; /* Color del texto, similar al de tu sitio principal */
+}
+
+.login-container .form-group {
+    margin-bottom: 15px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #4D4675; /* Borde similar al de tus tarjetas */
+    background-color: #1B3358; /* Fondo oscuro para los campos de entrada */
+    color: white;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    outline: none;
+    border-color: #9A79DB; /* Resalta el borde cuando se enfoca */
+    box-shadow: 0 0 5px rgba(154, 121, 219, 0.5); /* Sombra para el foco */
+}
+
+.login-container button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #BD83B8; /* Color que combina con el header */
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-container button[type="submit"]:hover {
+    background-color: #9A79DB; 
+}

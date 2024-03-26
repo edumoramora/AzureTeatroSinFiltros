@@ -1,0 +1,52 @@
+.actor-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 20px; 
+}
+
+.actor-card {
+  flex: 1 0 calc(25% - 20px); 
+  cursor: pointer; 
+  margin-bottom: 20px; 
+}
+
+@media (max-width: 768px) {
+  .actor-card {
+    flex: 1 0 calc(50% - 20px); 
+  }
+}
+
+@media (max-width: 480px) {
+  .actor-card {
+    flex: 1 0 100%; 
+  }
+}
+
+.actor-card:hover {
+  box-shadow: 0 4px 17px rgba(75, 73, 102, 0.35);
+}
+
+.actor-card img {
+  height: 300px;
+  width: 250px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.actor-card:hover img {
+  transform: scale(1.1); 
+}
+
+.custom-btn-size {
+  padding: 1rem 2rem; 
+  font-size: 1.2rem; 
+}
+
+.btn-margin {
+  margin-bottom: 20px; 
+}

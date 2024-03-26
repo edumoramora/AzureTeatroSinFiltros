@@ -1,0 +1,35 @@
+<div class="container obra-detalle">
+    <div class="obra-header">
+        <img src="{{ obra.imagen_url }}" alt="Imagen de la obra" class="obra-imagen">
+        <div class="obra-info">
+            <h2>{{ obra.titulo }}</h2>
+            <p>{{ obra.descripcion }}</p>
+        </div>
+        <div class="obra-meta">
+            <p><strong>Duración:</strong> {{ obra.duracion }}</p>
+            <p><strong>Categoría:</strong> {{ obra.categoria }}</p>
+        </div>
+    </div>
+  
+    <h3>Actores</h3>
+    <div class="actor-list">
+        <div *ngFor="let actor of actores" class="actor-item">
+          <img [src]="actor.imagen_url" alt="{{ actor.nombre }}" class="actor-image zoom" (click)="navegarActorInfo(actor.actor_id)">
+          <div class="actor-name">{{ actor.nombre }}</div>
+          <button *ngIf="isLoggedIn" class="btn btn-danger btn-sm" (click)="eliminarActor(actor.id)">Eliminar</button>
+        </div>
+    </div>
+<br>
+      <div class="container mt-3 mb-3" >
+        <div class="row" *ngIf="isLoggedIn">
+            <div class="col-md-8">
+                <select class="form-control" id="actorSelect" [(ngModel)]="selectedActorId">
+                    <option *ngFor="let actor of actoresSelect" [value]="actor.id">{{ actor.nombre }}</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" (click)="anadirActor()">Añadir Actor</button>
+            </div>
+        </div>
+    </div>
+</div>

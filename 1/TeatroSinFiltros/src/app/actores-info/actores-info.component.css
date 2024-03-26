@@ -1,0 +1,66 @@
+.actor-imagen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.actor-imagen {
+  width: 400px;
+  height: 400px;
+  border-radius: 5px; 
+}
+
+.actor-info-container h2, .actor-info-container p {
+  margin: 0; 
+  padding-top: 10px; 
+}
+
+.actor-info-container {
+  padding-left: 30px; 
+}
+
+
+.actor-imagen-container {
+  height: 400px; 
+  width: 400px; 
+  overflow: hidden; 
+}
+
+.actor-imagen {
+  height: 100%; 
+  object-fit: cover; 
+}
+
+.obra-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  justify-content: start;
+}
+
+.obra-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.obra-image {
+  width: 100px; 
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  cursor: pointer; 
+}
+
+.obra-name {
+  margin-top: 10px;
+}
+
+.zoom {
+  transition: transform .2s; 
+}
+
+.zoom:hover {
+  transform: scale(1.1); 
+}
+

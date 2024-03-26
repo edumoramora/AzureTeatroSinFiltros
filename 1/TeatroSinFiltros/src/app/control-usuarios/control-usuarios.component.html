@@ -1,0 +1,60 @@
+<div class="container mt-3">
+  <h2>Control de Usuarios</h2>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre de Usuario</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Contraseña</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{ usuario.id_usuario }}</td>
+          <td>
+            <input *ngIf="usuarioEnEdicion?.id_usuario === usuario.id_usuario" [(ngModel)]="usuario.nombre_usuario" type="text" class="form-control" />
+            <span *ngIf="usuarioEnEdicion?.id_usuario !== usuario.id_usuario">{{ usuario.nombre_usuario }}</span>
+          </td>
+          <td>
+            <input *ngIf="usuarioEnEdicion?.id_usuario === usuario.id_usuario" [(ngModel)]="usuario.email" type="email" class="form-control" />
+            <span *ngIf="usuarioEnEdicion?.id_usuario !== usuario.id_usuario">{{ usuario.email }}</span>
+          </td>
+          <td>
+            <div *ngIf="usuarioEnEdicion?.id_usuario === usuario.id_usuario">
+              <select [(ngModel)]="usuario.rol" class="form-control">
+                <option value="admin">Admin</option>
+                <option value="usuario">Usuario</option>
+                <option value="empleado">Empleado</option>
+              </select>
+            </div>
+            <div *ngIf="usuarioEnEdicion?.id_usuario !== usuario.id_usuario">
+              {{ usuario.rol }}
+            </div>
+          </td>
+          <td>Cifrada</td>
+          <td>
+            <div *ngIf="usuarioEnEdicion?.id_usuario === usuario.id_usuario">
+              <button class="btn btn-success btn-sm mr-2" (click)="guardarCambios(usuario)">Aceptar</button>
+              <button class="btn btn-secondary btn-sm" (click)="cancelarEdicion()">Cancelar</button>
+            </div>
+            <div *ngIf="!usuarioEnEdicion || usuarioEnEdicion.id_usuario !== usuario.id_usuario">
+              <button class="btn btn-primary btn-sm mr-2" (click)="habilitarEdicion(usuario)">Modificar</button>
+              <button class="btn btn-danger btn-sm" (click)="eliminarUsuario(usuario.id_usuario)">Eliminar</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      
+    </table>
+    <div *ngIf="mensajeError" class="alert alert-danger">
+      {{ mensajeError }}
+    </div>
+    <div *ngIf="mensajeExito" class="alert alert-success">
+      {{ mensajeExito }}
+    </div>
+  </div>
+</div>

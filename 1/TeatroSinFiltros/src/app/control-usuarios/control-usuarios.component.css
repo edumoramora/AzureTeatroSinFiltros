@@ -1,0 +1,16 @@
+.table tbody tr {
+    background-color: #f8f9fa; /* Color de fondo gris claro para cada fila */
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #e9ecef; /* Color de fondo más oscuro para las filas impares */
+  }
+
+  .btn-sm {
+    margin-right: 20px; /* Ajusta este valor según necesites */
+  }
+
+  [contenteditable="true"] {
+    background-color: #fff3cd; /* Fondo amarillo claro para indicar edición */
+    outline: none; /* Remueve el borde predeterminado en el foco */
+  }

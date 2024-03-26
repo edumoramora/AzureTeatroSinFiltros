@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="screen"></div>
+  <div *ngFor="let fila of asientos" class="row">
+    <div *ngFor="let asiento of fila" 
+         class="seat"
+         [ngClass]="{
+           'selected': asiento.estado === 'seleccionado', 
+           'occupied': asiento.estado === 'ocupado'
+         }"
+         (click)="toggleSeat(asiento)">
+         {{ asiento.columna }}
+    </div>
+  </div>
+</div>
+
+<p class="text limit-message" *ngIf="maxSeatsReached">
+  Has alcanzado el límite de 5 asientos seleccionados!!!
+</p>
+
+<br>
+<br>
+
+<div class="reserva-container">
+  <input type="text" [(ngModel)]="nombreUsuario" placeholder="Nombre del Usuario" />
+  <button (click)="guardarReserva()">Guardar Reserva</button>
+</div>
+
+<div *ngIf="mostrarMensajeExito" class="mensaje-exito">
+  Reserva registrada con éxito!
+</div>
+
+<br>
+<br>

@@ -1,0 +1,17 @@
+.obra-container {
+    /* Tus estilos para la obra */
+    margin-bottom: 20px; /* Espacio entre obras */
+}
+
+.obra-imagen {
+    /* Tus estilos para la imagen de la obra */
+    width: 100%; /* Ejemplo para que ocupe el ancho */
+    height: auto; /* Altura automática para mantener la proporción */
+}
+
+.obra-admin-buttons {
+    /* Tus estilos para los botones de administrador */
+    display: flex;
+    justify-content: space-around; /* Espacio entre botones */
+    margin-top: 10px; /* Espacio entre los botones y la descripción de la obra */
+}

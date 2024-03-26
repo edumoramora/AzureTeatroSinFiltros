@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-md-4 actor-imagen-container">
+          <img src="{{ actor.imagen_url }}" alt="Imagen del actor" class="actor-imagen">
+      </div>
+      <div class="col-md-8 actor-info-container">
+          <h2>{{ actor.nombre }}</h2>
+          <p>{{ actor.descripcion }}</p>
+      </div>
+  </div>
+
+<br>
+  <div class="obra-list">
+      <div class="col-12">
+          <h3>Obras en las que participa</h3>
+      </div>
+      <div *ngFor="let obra of obras" class="obra-item">
+              <img src="{{ obra.imagen_url }}" class="obra-image zoom" alt="{{ obra.titulo }}" (click)="navegarAObraInfo(obra.obra_id)">
+              <div class="obra-name">
+                  <h5 class="obra-name">{{ obra.titulo }}</h5>
+                  <button *ngIf="isLoggedIn" class="btn btn-danger" (click)="eliminarObra(obra.id)">Eliminar de Obra</button>
+              </div>
+      </div>
+  </div>
+
+  <div *ngIf="isLoggedIn" class="mt-4">
+      <h4>Añadir a nueva obra</h4>
+      <div class="form-group">
+          <select class="form-control" [(ngModel)]="selectedObraId">
+              <option *ngFor="let obra of obrasSelect" [value]="obra.id">{{ obra.titulo }}</option>
+          </select>
+      </div>
+      <button class="btn btn-primary" (click)="anadirObra()">Añadir Obra</button>
+  </div>
+</div>

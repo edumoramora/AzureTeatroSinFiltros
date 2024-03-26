@@ -1,0 +1,16 @@
+.table tbody tr {
+    background-color: #f8f9fa; 
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #e9ecef; 
+  }
+
+  .btn-sm {
+    margin-right: 20px; 
+  }
+
+  [contenteditable="true"] {
+    background-color: #fff3cd; 
+    outline: none; 
+  }

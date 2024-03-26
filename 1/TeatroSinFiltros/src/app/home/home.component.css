@@ -1,0 +1,61 @@
+
+.card {
+    background-color: #2C2A33;
+    color: #DDD;
+    border: 1px solid #4D4675;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .card-container .card:not(.highlight-card):hover {
+    box-shadow: 0 4px 17px rgba(75, 73, 102, 0.35);
+  }
+  
+  .btn-highlight {
+    background-color: #4e004e;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+  .btn-highlight:hover {
+    background-color: #4e004e;
+    color: white;
+  }
+
+  a, a:visited, a:hover { color: #4A306D; }
+.terminal { background-color: #15161B; }
+
+.show-cards-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .custom-spacing {
+    margin-top: 2rem; /* Espacio superior */
+    margin-bottom: 2rem; /* Espacio inferior */
+  }
+  
+  .custom-btn-size {
+    padding: 1rem 2rem; /* Añadir padding para hacer el botón más grande */
+    font-size: 1.2rem; /* Aumentar el tamaño del texto si es necesario */
+  }
+  
+  .btn-warning {
+    background-color: orange; /* O el código de color naranja específico que prefieras */
+  }
+  
+  .admin-buttons {
+    display: flex;
+    justify-content: space-around; /* Espacio uniforme a ambos lados de los botones */
+    margin-top: 10px; /* Espacio por encima de los botones */
+  }
+  
+  .admin-button {
+    flex-grow: 1; /* Los botones crecen para llenar el espacio disponible */
+    margin: 0 10px; /* Espacio entre botones */
+  }

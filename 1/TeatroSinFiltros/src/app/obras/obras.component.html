@@ -1,0 +1,36 @@
+<main>
+    <div class="container">
+      <h1 class="text-center">Descubre Obras: Un viaje a través del arte</h1>
+      <p class="text-center">Adéntrate en Obras, una sección de nuestra página web dedicada a la exploración del arte en todas sus formas.</p>
+      <br>
+      <br>
+      <div class="show-cards-container">
+      <div *ngFor="let show of shows">
+     
+          <div class="show-card" 
+          (mouseenter)="showButton = true" 
+          (mouseleave)="showButton = false">
+      <a [href]="bookingUrl" target="_blank" class="show-card-link">
+        <img [src]="show.imagen_url" [alt]="showDescription" class="img-fluid show-card-image">
+      </a>
+      <button *ngIf="showButton" class="btn btn-primary show-card-button" (click)="verInformacionObra(show.id)">
+        Ver Información
+      </button>
+   </div>
+   <h4 class="title-container">{{show.titulo}}</h4>
+        <div *ngIf="isLoggedIn"  class="admin-buttons">
+          <button class="btn btn-warning" [routerLink]="['/modificar-obra', show.id]">Modificar</button>
+          <button class="btn btn-danger" (click)="handleDelete(show.id)">Eliminar</button>
+        </div>
+      </div>
+      </div>
+     
+    </div>
+
+  <div routerLink="/add-obra" class="text-center custom-spacing" *ngIf="isLoggedIn">
+   <button class="btn btn-success custom-btn-size">
+       Añadir Obra
+    </button>
+  </div>
+
+</main>

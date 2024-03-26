@@ -1,0 +1,22 @@
+<main>
+    <div class="container">
+      <h1 class="text-center">Entradas para Funciones de Teatro</h1>
+      <p class="text-center">Disfruta de las mejores representaciones en el Teatro Local</p>
+      <br>
+      <br>
+      <div class="show-cards-container">
+      <div *ngFor="let show of shows">
+     
+          <app-show-card 
+          [id]="show.id"
+          [id_sala]="show.id_reservas_teatrales"
+          [showImageUrl]="show.imagen_url"
+          [showDescription]="show.descripcion">
+        </app-show-card>
+         
+      </div>
+      </div>
+      
+    </div>
+
+</main>

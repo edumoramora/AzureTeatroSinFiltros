@@ -1,0 +1,13 @@
+.table tbody tr {
+    background-color: #f8f9fa; /* Color de fondo gris claro para cada fila */
+  }
+  
+  .table tbody tr:nth-child(odd) {
+    background-color: #e9ecef; 
+  }
+
+  .btn-sm {
+    margin-right: 20px; 
+  }
+
+ 

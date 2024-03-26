@@ -1,0 +1,10 @@
+<div class="show-card" 
+     (mouseenter)="showButton = true" 
+     (mouseleave)="showButton = false">
+  <a [href]="bookingUrl" target="_blank" class="show-card-link">
+    <img [src]="showImageUrl" [alt]="showDescription" class="img-fluid show-card-image">
+  </a>
+  <button *ngIf="showButton" class="btn btn-primary show-card-button" (click)="comprarEntradas(id,id_sala)">
+    Comprar Entradas
+  </button>
+</div>

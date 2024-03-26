@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <form>
+          <div class="form-group">
+            <label for="nombre_sala">Nombre de la Sala</label>
+            <input type="text" class="form-control" id="nombre_sala" [(ngModel)]="sala.nombre_sala" name="nombre_sala" required>
+          </div>
+          <div *ngIf="errorMensaje" class="alert alert-danger">
+            {{ errorMensaje }}
+          </div>
+        </form>
+      </div>
+  
+      <div class="col-md-6">
+        <div class="sala-container">
+          <div class="screen"></div>
+          <div *ngFor="let fila of asientos; let i = index" class="fila">
+            <div *ngFor="let asiento of fila" class="seat"
+                [ngClass]="{'selected': asiento.estado === 'seleccionado', 'occupied': asiento.estado === 'ocupado'}"
+                (click)="toggleSeat(asiento)">
+              {{ asiento.columna }}
+            </div>
+          </div>
+          <div class="mensaje-seleccion">
+            Seleccione los asientos que no estarán disponibles para el público
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5 mb-5"> 
+      <div class="col text-center"> 
+        <button class="btn btn-success btn-lg" (click)="crearSala()">Modificar Sala</button>
+      </div>
+    </div>
+  </div>

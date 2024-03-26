@@ -1,0 +1,28 @@
+<div class="container">
+      <br>
+      <h2>Reservas Teatrales</h2>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID Reserva</th>
+            <th>Nombre</th>
+            <th>Cantidad Butacas</th>
+            <th>Reserva Teatral</th>
+            <th>Fecha y Hora</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reserva of reserva">
+            <td>{{ reserva.id_reservas }}</td>
+            <td>{{ reserva.nombre_usuario }}</td>
+            <td>{{ reserva.cantidad_butacas }}</td>
+            <td>{{ reserva.titulo}}</td>
+            <td>{{ reserva.fecha_hora | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="eliminarReserva(reserva.id_reservas)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+</div>

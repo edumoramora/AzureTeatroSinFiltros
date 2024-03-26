@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teatro Sin Filtros</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app.component.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+          <a class="navbar-brand" [routerLink]="['/']">Teatro Sin Filtros</a>
+
+           
+            <div id="navbarNavAltMarkup">
+              <div class="navbar-nav">
+                <a class="nav-item nav-link active"[routerLink]="['/']">Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" [routerLink]="'/obras'" href="#">Obras</a>
+                <a class="nav-item nav-link" [routerLink]="['/actores']">Actores</a>
+                <a class="nav-item nav-link" [routerLink]="['/contacto']">Contacto</a>
+              </div>
+            </div>
+
+            <div class="ml-auto d-flex align-items-center">
+              <div *ngIf="isLoggedIn">
+                <label for="menu-checkbox" class="menu-icon" (click)="toggleMenu()">☰</label>
+                <input type="checkbox" class="menu-checkbox" [checked]="menuVisible">
+                
+                <ul class="admin-dropdown-menu" [class.hidden]="!menuVisible">
+                  <li (click)="hideMenu()"><a [routerLink]="'/registrar-usuario'"><i class="fa-solid fa-user"></i> Registrar Usuario</a></li>
+                  <li (click)="hideMenu()"><a [routerLink]="'/control-usuarios'"><i class="fa-solid fa-user"></i> Control de Usuarios</a></li>
+                  <li (click)="hideMenu()"><a [routerLink]="'/crear-sala'"><i class="fa-solid fa-film"></i> Crear Sala</a></li>
+                  <li (click)="hideMenu()"><a [routerLink]="'/mostrar-salas'"><i class="fa-solid fa-film"></i> Modificar Sala</a></li>
+                  <li (click)="hideMenu()"><a [routerLink]="'/crear-reserva'"><i class="fa-solid fa-tag"></i> Crear Reserva</a></li>
+                  <li (click)="hideMenu()"><a [routerLink]="'/mostrar-reservas'"><i class="fa-solid fa-tag"></i> Mostrar Reserva</a></li>
+                  <li (click)="hideMenu()"><a routerLink="/comprobar-entradas"><i class="fa-solid fa-ticket"></i> Comprobar Entradas</a></li>
+                </ul>
+              </div>
+              <div *ngIf="!isLoggedIn">
+              <a [routerLink]="'/login'" class="nav-link">Iniciar Sesión</a>
+              </div>
+              <div *ngIf="isLoggedIn">
+                <a (click)="logout()" class="nav-link cerrar-sesion">Cerrar Sesión</a>
+              </div>
+            </div>
+         
+          </nav>
+    </header>
+
+    
+    <router-outlet></router-outlet> 
+
+    <footer class="footer">
+      <div class="footer-top">
+        <div class="footer-column">
+          <h3 class="footer-title">Blog del Teatro</h3>
+          <ul>
+            <a href="#" class="footer-link">Blog</a>
+            <a href="#" class="footer-link">Teatros Colaboradores</a>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Digital</h3>
+          <ul>
+            <a href="#" class="footer-link">Como llegar</a>
+            <a href="#" class="footer-link">Contacto</a>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Información</h3>
+          <ul>
+            <a href="#" class="footer-link">Enlace 1</a>
+            <a href="#" class="footer-link">Enlace 2</a>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Redes Sociales</h3>
+          <ul>
+            <a href="#" class="footer-link">Enlace 1</a>
+            <a href="#" class="footer-link">Enlace 2</a>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>Teatro Sin Filtros 2023 - Web Master: Eduardo Mora Mora - Diseño: webDesigns.es</p>
+      </div>
+    </footer>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDt39FgOOdY7U0RjQHaHGBxnH4gCPnVkSA",
+        authDomain: "hardy-pattern-415912.firebaseapp.com",
+        projectId: "hardy-pattern-415912",
+        storageBucket: "hardy-pattern-415912.appspot.com",
+        messagingSenderId: "210318250005",
+        appId: "1:210318250005:web:52986dee36508008edfe1c",
+        measurementId: "G-TJZW9DP9S0"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+
+  </body>
+</html>

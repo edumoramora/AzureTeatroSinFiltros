@@ -1,0 +1,33 @@
+<main>
+  <div class="container">
+    <h1 class="text-center">Nuestros Actores Destacados</h1>
+    <p class="text-center">Conoce a los talentosos artistas que dan vida a nuestras obras</p>
+    <br>
+    <br>
+    <div class="actor-cards-container">
+      <div *ngFor="let actor of actores">
+          <div class="actor-card" 
+          (mouseenter)="showButton = true" 
+          (mouseleave)="showButton = false">
+       <div class="actor-card-link" (click)="verDetalles(actor.id)">
+         <img [src]="actor.imagen_url" class="img-fluid show-card-image">
+         <h5 class="actor-name">{{ actor.nombre }}</h5>
+       </div>
+        <div *ngIf="isLoggedIn" class="admin-buttons">
+          <button class="btn btn-warning" [routerLink]="['/add-actores', actor.id]">Modificar</button>
+          <button class="btn btn-danger" (click)="handleDelete(actor.id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div routerLink="/add-actores" class="text-center custom-spacing" *ngIf="isLoggedIn">
+    <button class="btn btn-success custom-btn-size">
+      Añadir Actor
+    </button>
+  </div>
+  <br>
+</main>
