@@ -8,8 +8,8 @@ import { AuthenticationService } from './authentication.service';
   providedIn: 'root'
 })
 export class ObraService {
-  private apiUrl = 'http://localhost:3000/api/obras'; 
-  private api = 'http://localhost:3000/api';
+  private apiUrl = 'https://azure-teatro-sin-filtros-k7nf-edumoramoras-projects.vercel.app/api/obras'; 
+  private api = 'azure-teatro-sin-filtros-k7nf-edumoramoras-projects.vercel.app/api';
   private obrasActualizadas = new Subject<void>();
   constructor(private http: HttpClient,private authService: AuthenticationService) { }
 
