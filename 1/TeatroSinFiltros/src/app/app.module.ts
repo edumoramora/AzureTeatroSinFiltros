@@ -26,7 +26,7 @@ import { ActoresInfoComponent } from './actores-info/actores-info.component';
 import { ObrasComponent } from './obras/obras.component';
 import { ObrasInfoComponent } from './obras-info/obras-info.component';
 import { ContactoComponent } from './contacto/contacto.component';
-import { GoogleMapsModule } from '@angular/google-maps';
+
 
 
 @NgModule({
