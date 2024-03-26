@@ -7,7 +7,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ControlUsuariosService {
-  private apiUrl = 'http://localhost:3000/api/usuarios'; 
+  private apiUrl = 'https://azure-teatro-sin-filtros-k7nf-edumoramoras-projects.vercel.app/api/usuarios'; 
 
   constructor(private http: HttpClient) { }
 
