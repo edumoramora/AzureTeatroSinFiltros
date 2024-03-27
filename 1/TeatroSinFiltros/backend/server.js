@@ -12,7 +12,7 @@ const { Pool } = require('pg');
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:4200' 
+    origin: 'azure-teatro-sin-filtros.vercel.app' 
 }));
 
 
