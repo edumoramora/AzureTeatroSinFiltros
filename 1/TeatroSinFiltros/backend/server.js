@@ -64,7 +64,7 @@ app.post('/api/usuarios' ,verificarToken,async (req, res) => {
 });
 
 
-
+/*
 app.get('/api/obras', (req, res) => {
     const query = 'SELECT * FROM obras';
     db.query(query, (err, results) => {
@@ -76,7 +76,7 @@ app.get('/api/obras', (req, res) => {
       }
     });
 });
-
+*/
 app.get('/api/obras/:id', (req, res) => {
   const obraId = req.params.id;
   const query = 'SELECT * FROM obras WHERE id = ?';
