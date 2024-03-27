@@ -15,13 +15,9 @@ app.use(cors({
     origin: 'http://localhost:4200' 
 }));
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
 
 const httpsAgent = new https.Agent({  
-  rejectUnauthorized: false 
+  rejectUnauthorized: false // ADVERTENCIA: Esto desactiva la verificación de SSL.
 });
 
 const pool = new Pool({
@@ -30,6 +26,7 @@ const pool = new Pool({
 
 
 
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
 app.use(express.json());
 
@@ -75,8 +72,8 @@ app.get('/api/obras', (req, res) => {
         res.json(results);
       }
     });
-});
-*/
+}); */
+
 app.get('/api/obras/:id', (req, res) => {
   const obraId = req.params.id;
   const query = 'SELECT * FROM obras WHERE id = ?';
@@ -700,7 +697,7 @@ app.get('/actores', async (req, res) => {
   const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcGNpc3h0d3Nhc3hmZHRxZHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NzQ3MDEsImV4cCI6MjAyNzA1MDcwMX0.ZTJGt2t6xTEP2QZCdkR6qjgRkGnUhkqtD_xzlKFO_6s';
 
   const agent = new https.Agent({  
-    rejectUnauthorized: false 
+    rejectUnauthorized: false // IGNORA los certificados no autorizados
   });
 
   try {
@@ -709,7 +706,7 @@ app.get('/actores', async (req, res) => {
         'apikey': API_KEY,
         'Authorization': `Bearer ${API_KEY}`,
       },
-      httpsAgent: agent 
+      httpsAgent: agent // Usa el agente personalizado
     });
     res.json(response.data);
   } catch (error) {
@@ -895,5 +892,7 @@ app.get('/api/obras_actor/:id', (req, res) => {
 const PORT = process.env.PORT  || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor ejecutándose en el puerto ${PORT}`);
+});
+
 });
 
