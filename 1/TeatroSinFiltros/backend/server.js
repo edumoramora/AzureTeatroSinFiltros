@@ -692,7 +692,7 @@ app.delete('/api/reserva/:id', verificarToken, (req, res) => {
 });
 
 
-app.get('/actores', async (req, res) => {
+app.get('/api/actores', async (req, res) => {
   const SUPABASE_URL = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/actores';
   const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcGNpc3h0d3Nhc3hmZHRxZHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NzQ3MDEsImV4cCI6MjAyNzA1MDcwMX0.ZTJGt2t6xTEP2QZCdkR6qjgRkGnUhkqtD_xzlKFO_6s';
 
