@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class ActoresService {
-  private apiUrl = 'azure-teatro-sin-filtros-d79gcaoee-edumoramoras-projects.vercel.app';
+  private apiUrl = 'azure-teatro-sin-filtros-d79gcaoee-edumoramoras-projects.vercel.app/actores';
 
   constructor(private http: HttpClient) { }
 
