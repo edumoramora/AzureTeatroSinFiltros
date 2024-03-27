@@ -2,36 +2,37 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const bcrypt = require('bcrypt');
+const https = require('https');
+const axios = require('axios');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const verificarToken = require('./middlewares/authMiddleware'); // Asegúrate de ajustar la ruta según tu estructura
+const verificarToken = require('../middlewares/authMiddleware');
+const { createClient } = require('@supabase/supabase-js');
+const { Pool } = require('pg');
 
 const app = express();
 app.use(cors({
     origin: 'http://localhost:4200' 
 }));
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+
+export const supabase = createClient(supabaseUrl, supabaseKey);
+
+const httpsAgent = new https.Agent({  
+  rejectUnauthorized: false 
+});
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL 
+});
+
+
+
+
 app.use(express.json());
 
-// Creando un pool de conexiones
-const pool = mysql.createPool({
-  connectionLimit: 10, // La cantidad de conexiones máximas que puedes tener al mismo tiempo
-  host: process.env.MYSQL_ADDON_HOST,
-  user: process.env.MYSQL_ADDON_USER,
-  password: process.env.MYSQL_ADDON_PASSWORD,
-  database: process.env.MYSQL_ADDON_DB,
-  port: process.env.MYSQL_ADDON_PORT || 3306 // Asegurándose de que el puerto esté definido o usando el puerto por defecto de MySQL
-});
-
-pool.on('connection', function (connection) {
-  console.log('DB Connection established');
-
-  connection.on('error', function (err) {
-    console.error(new Date(), 'MySQL error', err.code);
-  });
-  connection.on('close', function (err) {
-    console.error(new Date(), 'MySQL close', err);
-  });
-});
 
 app.post('/api/usuarios' ,verificarToken,async (req, res) => {
   const { nombreUsuario, email, contrasena } = req.body;
@@ -693,19 +694,35 @@ app.delete('/api/reserva/:id', verificarToken, (req, res) => {
   });
 });
 
-app.get('/api/actores', (req, res) => {
-  const query = 'SELECT * FROM actores';
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error('Error al obtener actores:', err);
-      res.status(500).send('Error en el servidor');
-    } else {
-      res.json(results);
-    }
+
+app.get('/actores', async (req, res) => {
+  const SUPABASE_URL = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/actores';
+  const API_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcGNpc3h0d3Nhc3hmZHRxZHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NzQ3MDEsImV4cCI6MjAyNzA1MDcwMX0.ZTJGt2t6xTEP2QZCdkR6qjgRkGnUhkqtD_xzlKFO_6s';
+
+  const agent = new https.Agent({  
+    rejectUnauthorized: false 
   });
+
+  try {
+    const response = await axios.get(SUPABASE_URL, {
+      headers: {
+        'apikey': API_KEY,
+        'Authorization': `Bearer ${API_KEY}`,
+      },
+      httpsAgent: agent 
+    });
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error al realizar la solicitud a Supabase:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
 });
 
+
+
+
 app.get('/api/actores/:id', (req, res) => {
+
   const { id } = req.params;
   const query = 'SELECT * FROM actores WHERE id = ?';
 
@@ -875,7 +892,8 @@ app.get('/api/obras_actor/:id', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT  || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor ejecutándose en el puerto ${PORT}`);
 });
+
