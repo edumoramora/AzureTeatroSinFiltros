@@ -889,6 +889,10 @@ app.get('/api/obras_actor/:id', (req, res) => {
   });
 });
 
+const { createServer } = require('http');
+const server = createServer(app);
+module.exports = server;
+
 const PORT = process.env.PORT  || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor ejecutándose en el puerto ${PORT}`);
