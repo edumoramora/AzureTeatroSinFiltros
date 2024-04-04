@@ -34,7 +34,7 @@ private apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsI
       'Content-Type': 'application/json'
     });
 
-    return this.http.get<any[]>(this.apiUrl, { headers });
+    return this.http.get<any[]>(this.apiUrl + '?select=*', { headers });
   }
 
   getReservasObras() {
