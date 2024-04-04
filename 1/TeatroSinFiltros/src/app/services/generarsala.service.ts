@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 
 export class GenerarsalaService {
-  private apiUrl = 'http://localhost:3000/api/salas';
+    private apiUrl = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/salas';
 
   constructor(private http: HttpClient) { }
 
@@ -16,8 +16,15 @@ export class GenerarsalaService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post(this.apiUrl, sala,{ headers });
   }
-  getSalas(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+  
+ getSalas(): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'apikey': this.supabaseKey,
+      'Authorization': `Bearer ${this.supabaseKey}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<any[]>(this.apiUrl, { headers });
   }
 
   eliminarSala(id: number): Observable<any> {
