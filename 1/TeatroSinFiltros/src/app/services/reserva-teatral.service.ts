@@ -27,7 +27,7 @@ private apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsI
   }
 
 
-  getReservas(): Observable<any[]> {
+  getReservas(){
     const headers = new HttpHeaders({
       'apikey': this.apikey,
       'Authorization': `Bearer ${this.apikey}`,
