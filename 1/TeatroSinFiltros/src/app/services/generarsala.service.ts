@@ -20,8 +20,8 @@ export class GenerarsalaService {
   
  getSalas(): Observable<any[]> {
     const headers = new HttpHeaders({
-      'apikey': this.supabaseKey,
-      'Authorization': `Bearer ${this.supabaseKey}`,
+      'apikey': this.apikey,
+      'Authorization': `Bearer ${this.apikey}`,
       'Content-Type': 'application/json'
     });
 
