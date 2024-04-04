@@ -10,9 +10,16 @@ export class ControlUsuariosService {
   private apiUrl = 'https://azure-teatro-sin-filtros-k7nf-edumoramoras-projects.vercel.app/api/usuarios'; 
 
   constructor(private http: HttpClient) { }
+  
+obtenerUsuarios(): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'apikey': this.supabaseKey,
+      'Authorization': `Bearer ${this.supabaseKey}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation' // Opcional, dependiendo de tus necesidades
+    });
 
-  obtenerUsuarios(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(this.apiUrl, { headers });
   }
 
   eliminarUsuario(id: number): Observable<any> {
