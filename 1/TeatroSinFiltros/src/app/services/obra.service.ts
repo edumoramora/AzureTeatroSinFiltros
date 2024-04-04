@@ -8,7 +8,7 @@ import { AuthenticationService } from './authentication.service';
   providedIn: 'root'
 })
 export class ObraService {
-  private apiUrl = 'https://azure-teatro-sin-filtros-k7nf-edumoramoras-projects.vercel.app/api/obras'; 
+  private apiUrl = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/obras'; 
   private apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcGNpc3h0d3Nhc3hmZHRxZHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NzQ3MDEsImV4cCI6MjAyNzA1MDcwMX0.ZTJGt2t6xTEP2QZCdkR6qjgRkGnUhkqtD_xzlKFO_6s';
   private api = 'https://azure-teatro-sin-filtros-k7nf-edumoramoras-projects.vercel.app/api/obras'; 
   
