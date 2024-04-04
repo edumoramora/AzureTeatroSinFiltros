@@ -12,8 +12,12 @@ export class ActoresService {
   constructor(private http: HttpClient) { }
   
 getActores(): Observable<any[]> {
-  return this.http.get<any[]>(this.apiUrl);
-}
+    const headers = new HttpHeaders()
+      .set('apikey', this.apikey)
+      .set('Authorization', `Bearer ${this.apikey}`);
+
+    return this.http.get<any[]>(this.apiUrl + '?select=*', { headers });
+  }
 
   deleteActor(actorId: number): Observable<any> {
     const token = this.getToken();
