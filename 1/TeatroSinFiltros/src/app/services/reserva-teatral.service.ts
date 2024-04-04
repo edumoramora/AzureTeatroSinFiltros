@@ -38,7 +38,13 @@ private apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsI
   }
 
   getReservasObras() {
-    return this.http.get<any[]>('http://localhost:3000/api/reservas_teatrales_obras');
+      const headers = new HttpHeaders({
+      'apikey': this.apikey,
+      'Authorization': `Bearer ${this.apikey}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<any[]>(this.apiUrl + '?select=*', { headers });
   }
 
   getToken(): string | null {
