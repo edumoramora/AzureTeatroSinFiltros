@@ -47,7 +47,7 @@ export class GenerarsalaService {
       'Content-Type': 'application/json',
     });
 
-    return this.http.get<any>(`${this.api}?id=eq.${id}&select=*`, { headers });
+    return this.http.get<any>(`${this.api}?id_sala=eq.${id}&select=*`, { headers });
   }
   
   actualizarSala(id_sala: number, sala: any): Observable<any> {
