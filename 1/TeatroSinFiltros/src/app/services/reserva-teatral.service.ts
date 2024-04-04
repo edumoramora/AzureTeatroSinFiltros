@@ -14,8 +14,9 @@ interface Reserva {
 
 
 export class ReservaService {
-
-  private apiUrl = 'http://localhost:3000/api/reservas_teatrales'; 
+  
+private apiUrl = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/reservas_teatrales';
+private apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcGNpc3h0d3Nhc3hmZHRxZHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NzQ3MDEsImV4cCI6MjAyNzA1MDcwMX0.ZTJGt2t6xTEP2QZCdkR6qjgRkGnUhkqtD_xzlKFO_6s';
 
   constructor(private http: HttpClient) { }
 
@@ -25,8 +26,15 @@ export class ReservaService {
     return this.http.post(this.apiUrl, reserva,{ headers });
   }
 
-  getReservas() {
-    return this.http.get<any[]>(this.apiUrl);
+
+  getReservas(): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'apikey': this.apikey,
+      'Authorization': `Bearer ${this.apikey}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.get<any[]>(this.apiUrl, { headers });
   }
 
   getReservasObras() {
