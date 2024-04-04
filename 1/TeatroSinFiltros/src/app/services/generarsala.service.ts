@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class GenerarsalaService {
     private apiUrl = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/salas';
     private apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcGNpc3h0d3Nhc3hmZHRxZHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NzQ3MDEsImV4cCI6MjAyNzA1MDcwMX0.ZTJGt2t6xTEP2QZCdkR6qjgRkGnUhkqtD_xzlKFO_6s';
-
+    private api = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/salas_funciones';
   constructor(private http: HttpClient) { }
 
   subirConfiguracionSala(sala: any) {
@@ -41,8 +41,13 @@ export class GenerarsalaService {
 
   
   getSalaByIdFuncion(id_sala: number): Observable<any> {
-    const url = `http://localhost:3000/api/salas_funciones/${id_sala}`;
-    return this.http.get<any>(url);
+    const headers = new HttpHeaders({
+      'apikey': this.apikey,
+      'Authorization': `Bearer ${this.apikey}`,
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.get<any>(`${this.api}?id=eq.${id}&select=*`, { headers });
   }
   
   actualizarSala(id_sala: number, sala: any): Observable<any> {
