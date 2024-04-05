@@ -13,14 +13,13 @@ export class ControlUsuariosService {
   constructor(private http: HttpClient) { }
   
 obtenerUsuarios(): Observable<any[]> {
-    const headers = new HttpHeaders({
+      const headers = new HttpHeaders({
       'apikey': this.apikey,
       'Authorization': `Bearer ${this.apikey}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation' // Opcional, dependiendo de tus necesidades
+      'Content-Type': 'application/json'
     });
 
-    return this.http.get<any[]>(this.apiUrl, { headers });
+    return this.http.get<any[]>(this.apiUrl + '?select=*', { headers });
   }
 
   eliminarUsuario(id: number): Observable<any> {
