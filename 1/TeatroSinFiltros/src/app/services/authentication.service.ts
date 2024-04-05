@@ -24,19 +24,29 @@ export class AuthenticationService {
     this.isLoggedInSource.next(!!token);
   }
 
-  login(credentials: { nombre_usuario: string; contrasena: string }): Observable<any> {
-    return this.http.post<any>(this.loginUrl, credentials).pipe(
-      tap(response => {
+
+login(credentials: { nombre_usuario: string; contrasena: string }): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'apikey': this.apikey
+      // Otros headers necesarios para Supabase
+    });
+
+    return this.http.post(this.loginUrl, credentials, { headers }).pipe(
+      map((response: any) => {
+        // Suponiendo que tu procedimiento almacenado devuelve el token y el rol
         localStorage.setItem('token', response.token);
         localStorage.setItem('userRole', response.rol);
-        this._userRole = response.rol; 
-        this.isLoggedInSource.next(true);
-        console.log("Login successful:", this._isLoggedIn, this._userRole);
+        console.log("Login successful");
+        return response;
       }),
-      catchError(this.handleError)
+      catchError(error => {
+        console.error('Login failed', error);
+        return throwError(error);
+      })
     );
   }
-
+}
   get isLoggedIn(): boolean {
     return this._isLoggedIn;
   }
