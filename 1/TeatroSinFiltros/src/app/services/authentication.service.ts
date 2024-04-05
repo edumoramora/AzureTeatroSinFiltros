@@ -18,7 +18,7 @@ export class AuthenticationService {
   isLoggedIn$ = this.isLoggedInSource.asObservable();
   private apiUrl = 'https://dqpcisxtwsasxfdtqdwd.supabase.co/rest/v1/usuarios'; 
   private apikey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxcGNpc3h0d3Nhc3hmZHRxZHdkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NzQ3MDEsImV4cCI6MjAyNzA1MDcwMX0.ZTJGt2t6xTEP2QZCdkR6qjgRkGnUhkqtD_xzlKFO_6s';
-  
+  private supabaseUrl = 'https://dqpcisxtwsasxfdtqdwd.supabase.co';
   
 
   constructor(private http: HttpClient) {this.checkLoginStatus();}
@@ -29,27 +29,27 @@ export class AuthenticationService {
   }
 
 
-login(credentials: { nombre_usuario: string; contrasena: string }): Observable<any> {
-    const headers = new HttpHeaders({
-     'apikey': this.apikey,
-      'Authorization': `Bearer ${this.apikey}`,
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.post(this.apiUrl, credentials, { headers }).pipe(
-      map((response: any) => {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('userRole', response.rol);
-        console.log("Login successful");
-        return response;
+login(nombre_usuario: string, contrasena: string): Observable<any> {
+  const payload = { nombre_usuario, contrasena };
+  return this.http.post<any>(`${this.supabaseUrl}/rpc/login_user`, payload, { headers: this.getHeaders() })
+    .pipe(
+      map(response => {
+        if (response && response.length > 0) {
+          const rol = response[0].rol;
+          console.log("Login successful. Rol:", rol);
+          // Aquí puedes almacenar el rol en localStorage o manejarlo como necesites
+          return rol;
+        } else {
+          throw new Error('Credenciales inválidas');
+        }
       }),
       catchError(error => {
-        console.error('Login failed', error);
-        return throwError(error);
+        console.error('Error en el login:', error);
+        return throwError('Error en el login');
       })
     );
-  }
 }
+  
   get isLoggedIn(): boolean {
     return this._isLoggedIn;
   }
