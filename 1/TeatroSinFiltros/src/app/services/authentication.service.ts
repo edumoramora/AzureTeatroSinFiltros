@@ -31,9 +31,9 @@ export class AuthenticationService {
 
 login(nombre_usuario: string, contrasena: string): Observable<any> {
   const payload = { nombre_usuario, contrasena };
-  return this.http.post<any>(`${this.supabaseUrl}/rpc/login_user`, payload, { headers: this.getHeaders() })
+  return this.http.post<any>(`${this.supabaseUrl}/rpc/login_user`, payload, { headers })
     .pipe(
-      map(response => {
+      Map(response => {
         if (response && response.length > 0) {
           const rol = response[0].rol;
           console.log("Login successful. Rol:", rol);
